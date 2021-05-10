@@ -27,19 +27,17 @@ abstract class PokemonModule {
     @Binds
     abstract fun bindPokemonRepository(impl: PokemonRepositoryImpl): PokemonRepository
 
-    @Module
     companion object {
 
         // We can provide method bodies that construct more complicated dependencies.
         // This method will be directly called by Dagger when someone injects a PokemonService.
         @Provides
-        @JvmStatic
         fun providePokemonService(): PokemonService {
             return Retrofit.Builder()
-                    .baseUrl("https://pokeapi.co/api/v2/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
-                    .create(PokemonService::class.java)
+                .baseUrl("https://pokeapi.co/api/v2/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(PokemonService::class.java)
         }
     }
 }

@@ -5,4 +5,5 @@ import androidx.lifecycle.LiveData
 interface PokemonRepository {
 
     fun getPokemon(): LiveData<List<Pokemon>>
+
 }

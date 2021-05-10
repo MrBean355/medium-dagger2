@@ -7,4 +7,5 @@ interface PokemonService {
 
     @GET("pokemon?limit=999")
     fun getAll(): Call<PokemonResponse>
+
 }

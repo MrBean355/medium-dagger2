@@ -10,8 +10,10 @@ private val executor: Executor = Executors.newSingleThreadExecutor()
 
 // A constructor annotated with @Inject tells Dagger to use it when trying to instantiate the class.
 // Dagger will try to instantiate any parameters of the @Injected-annotated constructor and pass them in.
-class PokemonRepositoryImpl @Inject constructor(private val service: PokemonService, private val cache: PokemonCache)
-    : PokemonRepository {
+class PokemonRepositoryImpl @Inject constructor(
+    private val service: PokemonService,
+    private val cache: PokemonCache
+) : PokemonRepository {
 
     override fun getPokemon(): LiveData<List<Pokemon>> {
         val liveData = MutableLiveData<List<Pokemon>>()

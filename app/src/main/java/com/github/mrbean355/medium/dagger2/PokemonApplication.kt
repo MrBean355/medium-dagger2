@@ -14,7 +14,7 @@ class PokemonApplication : Application(), HasAndroidInjector {
         super.onCreate()
         // Reference the generated AppComponent implementation and construct it.
         DaggerAppComponent.create()
-                .inject(this)
+            .inject(this)
     }
 
     override fun androidInjector() = androidInjector

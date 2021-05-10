@@ -3,11 +3,10 @@ package com.github.mrbean355.medium.dagger2.ui
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mrbean355.medium.dagger2.R
 import dagger.android.AndroidInjection
-import kotlinx.android.synthetic.main.activity_view_pokemon.*
 import javax.inject.Inject
 
 // To be able to inject activities and fragment, you need to create a @ContributesAndroidInjector
@@ -24,13 +23,15 @@ class ViewPokemonActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_pokemon)
 
+        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         val adapter = PokemonAdapter()
-        recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        recycler_view.adapter = adapter
+        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        recyclerView.adapter = adapter
 
-        viewModel.pokemon.observe(this, Observer {
-            progress_bar.visibility = View.GONE
+        val progressBar = findViewById<View>(R.id.progress_bar)
+        viewModel.pokemon.observe(this) {
+            progressBar.visibility = View.GONE
             adapter.setItems(it)
-        })
+        }
     }
 }
